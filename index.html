@@ -51,6 +51,16 @@
     margin:0 0 14px; text-transform:uppercase;
   }
   .lede{ font-size:1.12rem; max-width:70ch; margin:0; color:#2a2622; }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px; margin-top:22px;
+    font-family:var(--disp); font-weight:700; text-transform:uppercase; letter-spacing:.03em;
+    font-size:1.02rem; color:#fff; background:var(--blue);
+    border:2px solid var(--line); box-shadow:5px 5px 0 var(--ink);
+    padding:13px 22px; text-decoration:none; transition:transform .08s, box-shadow .08s;
+  }
+  .btn:hover{ transform:translate(2px,2px); box-shadow:3px 3px 0 var(--ink); }
+  .btn .ar{ font-size:1.15em; line-height:1; }
+  @media (prefers-reduced-motion:reduce){ .btn{ transition:none; } .btn:hover{ transform:none; box-shadow:5px 5px 0 var(--ink); } }
 
   /* ---------- STATS ---------- */
   .stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:26px; }
@@ -177,6 +187,7 @@
     <p class="kick">Стартов план · ИКСС ООД</p>
     <h1>Лего роботика<br>за деца</h1>
     <p class="lede">От „преподавател на час за друг" към собствен клуб: Даниела и екип водят занимания по детски градини, а ИКСС ООД държи целия марж. Ето оборудването, откъде да го купите, числата и стъпките.</p>
+    <a class="btn" href="paket-za-direktori.html">Виж пакета за директори <span class="ar" aria-hidden="true">▸</span></a>
     <div class="stats">
       <div class="stat"><div class="k">Стартов бюджет</div><div class="v">~€2 000</div></div>
       <div class="stat"><div class="k">Изплащане</div><div class="v">~12 сесии</div></div>
