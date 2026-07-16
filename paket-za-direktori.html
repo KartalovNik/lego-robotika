@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Лего роботика в градината, предложение</title>
+<style>
+  :root{
+    --paper:#FFFFFF; --ink:#141518; --ink2:#586172; --line:#141518; --soft:#DCE1E8;
+    --red:#E3000B; --yellow:#FFCF00; --blue:#0B6FB8; --green:#009B48;
+    --yellow-s:#FFF6D2; --green-s:#E0F3E8; --blue-s:#E4F0FA;
+    --disp:"Bahnschrift","DIN Alternate","Segoe UI",system-ui,sans-serif;
+    --body:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{ margin:0; background:var(--paper); color:var(--ink); font-family:var(--body); font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .sheet{ width:100%; margin:0; padding:clamp(18px,3.2vw,60px); }
+
+  .hero{ background:var(--yellow); border:2px solid var(--line); box-shadow:8px 8px 0 var(--red); padding:clamp(22px,3.6vw,42px); }
+  .studs{ display:flex; gap:12px; margin-bottom:18px; }
+  .studs i{ width:20px; height:20px; border-radius:50%; border:2px solid var(--line); display:block; }
+  .studs i:nth-child(1){ background:var(--red); } .studs i:nth-child(2){ background:var(--blue); }
+  .studs i:nth-child(3){ background:var(--paper); } .studs i:nth-child(4){ background:var(--green); }
+  .kick{ font-family:var(--disp); font-weight:700; text-transform:uppercase; letter-spacing:.14em; font-size:.82rem; margin:0 0 8px; }
+  h1{ font-family:var(--disp); font-stretch:88%; font-weight:700; font-size:clamp(2.3rem,5.6vw,4rem); line-height:.98; margin:0 0 14px; text-transform:uppercase; }
+  .lede{ font-size:1.14rem; max-width:74ch; margin:0; color:#2a2622; }
+
+  section{ margin-top:44px; }
+  .sh{ display:flex; align-items:center; gap:15px; margin-bottom:8px; }
+  .tab{ flex:none; width:26px; height:26px; border:2px solid var(--line); border-radius:3px; position:relative; }
+  .tab::before,.tab::after{ content:""; position:absolute; top:-6px; width:8px; height:6px; border:2px solid var(--line); border-bottom:none; border-radius:3px 3px 0 0; background:inherit; }
+  .tab::before{ left:3px; } .tab::after{ right:3px; }
+  .t-red{ background:var(--red); } .t-blue{ background:var(--blue); } .t-green{ background:var(--green); } .t-yellow{ background:var(--yellow); }
+  h2{ font-family:var(--disp); font-stretch:92%; font-weight:700; font-size:1.7rem; line-height:1.05; margin:0; text-transform:uppercase; }
+
+  p{ max-width:88ch; } strong{ font-weight:700; }
+  ul.list{ list-style:none; padding:0; margin:12px 0; }
+  ul.list li{ position:relative; padding:6px 0 6px 30px; max-width:88ch; }
+  ul.list li::before{ content:""; position:absolute; left:2px; top:12px; width:14px; height:14px; border:2px solid var(--line); border-radius:50%; background:var(--red); }
+  ul.list li:nth-child(4n+2)::before{ background:var(--blue); }
+  ul.list li:nth-child(4n+3)::before{ background:var(--green); }
+  ul.list li:nth-child(4n+4)::before{ background:var(--yellow); }
+
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:12px; }
+  @media (max-width:640px){ .grid2{ grid-template-columns:1fr; } }
+  .card{ background:var(--paper); border:2px solid var(--line); padding:18px; }
+  .card.us{ box-shadow:6px 6px 0 var(--green); }
+  .card.you{ box-shadow:6px 6px 0 var(--blue); }
+  .card h3{ font-family:var(--disp); font-weight:700; text-transform:uppercase; font-size:1.05rem; margin:0 0 8px; }
+
+  .facts{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:14px; }
+  @media (max-width:640px){ .facts{ grid-template-columns:repeat(2,1fr); } }
+  .fact{ border:2px solid var(--line); padding:12px 14px; box-shadow:4px 4px 0 var(--yellow); }
+  .fact .k{ font-size:.72rem; text-transform:uppercase; letter-spacing:.05em; color:var(--ink2); font-weight:600; }
+  .fact .v{ font-family:var(--disp); font-weight:700; font-size:1.35rem; margin-top:2px; }
+
+  .cta{ margin-top:44px; background:var(--ink); color:#fff; border:2px solid var(--line); box-shadow:8px 8px 0 var(--red); padding:clamp(20px,3vw,34px); }
+  .cta h2{ color:#fff; }
+  .cta .big{ font-family:var(--disp); font-weight:700; font-size:clamp(1.6rem,3.4vw,2.3rem); text-transform:uppercase; margin:6px 0 14px; }
+  .pill-price{ display:inline-block; background:var(--yellow); color:var(--ink); border:2px solid #fff; font-family:var(--disp); font-weight:700; padding:6px 14px; font-size:1.15rem; }
+  .contacts{ margin-top:16px; font-size:1.02rem; line-height:1.9; }
+  .contacts b{ color:var(--yellow); }
+  .fill{ background:#3a3f49; color:#fff; padding:0 6px; border-radius:3px; }
+
+  .foot{ color:var(--ink2); font-size:.84rem; margin-top:26px; }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <div class="hero">
+    <div class="studs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <p class="kick">Извънкласна дейност за детската градина</p>
+    <h1>Лего роботика<br>в градината</h1>
+    <p class="lede">Забавни занимания по конструиране и програмиране с LEGO® Education за деца от 5 до 10 години. Идваме при вас с цялата техника и опитен преподавател. Вие давате залата и децата, ние поемаме всичко останало.</p>
+  </div>
+
+  <section>
+    <div class="sh"><span class="tab t-red"></span><h2>Какво учат децата</h2></div>
+    <ul class="list">
+      <li><strong>Логическо мислене и решаване на проблеми</strong> чрез истински модели, които се движат.</li>
+      <li><strong>Първи стъпки в програмирането</strong> с иконно, визуално кодиране, подходящо за най-малките.</li>
+      <li><strong>Работа в екип</strong>, по двама на комплект, деца се учат да си сътрудничат.</li>
+      <li><strong>Фина моторика, математика и природни науки</strong> (STEAM) по игрив начин.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sh"><span class="tab t-blue"></span><h2>Как протича</h2></div>
+    <div class="facts">
+      <div class="fact"><div class="k">Възраст</div><div class="v">5 до 10 г.</div></div>
+      <div class="fact"><div class="k">Група</div><div class="v">до 10 деца</div></div>
+      <div class="fact"><div class="k">Едно занятие</div><div class="v">~60 мин</div></div>
+      <div class="fact"><div class="k">Честота</div><div class="v">1× седмично</div></div>
+    </div>
+    <ul class="list">
+      <li>Оборудване <strong>LEGO® Education SPIKE™ Essential</strong> плюс таблети, по 1 комплект на 2 деца. Носим и прибираме всичко.</li>
+      <li>Провеждаме в помещение на градината, в удобен за вас ден и час.</li>
+      <li>Структурирана програма с ясна прогресия по нива.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sh"><span class="tab t-green"></span><h2>Кой води</h2></div>
+    <p><strong>Даниела <span class="fill">[фамилия]</span></strong>, преподавател по LEGO роботика с <span class="fill">[X]</span> години опит с деца в тази възраст. <span class="fill">[кратко: квалификация, предишни градини/школи]</span>. Всички преподаватели, работещи с деца, представят свидетелство за съдимост.</p>
+  </section>
+
+  <section>
+    <div class="sh"><span class="tab t-yellow"></span><h2>Разпределение</h2></div>
+    <div class="grid2">
+      <div class="card us">
+        <h3>Ние поемаме</h3>
+        <ul class="list">
+          <li>Цялото оборудване и таблети</li>
+          <li>Опитен преподавател</li>
+          <li>Програма и материали</li>
+          <li>Застраховка „злополука" за децата по време на занятието</li>
+        </ul>
+      </div>
+      <div class="card you">
+        <h3>От градината</h3>
+        <ul class="list">
+          <li>Помещение за занятието</li>
+          <li>Съгласие и удобен график</li>
+          <li>Информиране на родителите</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <div class="sh"><span class="tab t-red"></span><h2>Започваме с безплатен пробен урок</h2></div>
+    <div class="big">Първото занятие е безплатно</div>
+    <p style="max-width:80ch; color:#e9ebef">Каним ви на едно демонстрационно занятие без ангажимент. Децата опитват, вие и родителите виждате ефекта, после решавате.</p>
+    <p style="margin:14px 0 0"><span class="pill-price">Цена за родител: €20 на занятие</span></p>
+    <div class="contacts">
+      <b>Организатор:</b> ИКСС ООД<br>
+      <b>Клуб:</b> <span class="fill">[име на клуба]</span><br>
+      <b>Телефон:</b> <span class="fill">[телефон]</span> &nbsp; <b>Имейл:</b> <span class="fill">[имейл]</span><br>
+      <b>Facebook / Instagram:</b> <span class="fill">[линк]</span>
+    </div>
+  </div>
+
+  <p class="foot">Заменете полетата в <span class="fill">[скоби]</span> с вашите данни, преди да разпечатате или споделите. LEGO® и SPIKE™ са търговски марки на групата LEGO, използвани тук само за описание на оборудването.</p>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Лего роботика, стартов план (ИКСС ООД)</title>
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#141518;
+    --ink2:#586172;
+    --line:#141518;
+    --soft:#DCE1E8;
+    --red:#E3000B;
+    --yellow:#FFCF00;
+    --blue:#0B6FB8;
+    --green:#009B48;
+    --red-s:#FCE6E7;
+    --yellow-s:#FFF6D2;
+    --blue-s:#E4F0FA;
+    --green-s:#E0F3E8;
+    --disp:"Bahnschrift","DIN Alternate","Segoe UI",system-ui,sans-serif;
+    --body:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--body); font-size:17px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .sheet{ width:100%; margin:0; padding:clamp(18px,3.2vw,60px); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--yellow); border:2px solid var(--line);
+    box-shadow:8px 8px 0 var(--red); padding:clamp(22px,3.6vw,40px);
+    margin-bottom:38px;
+  }
+  .studs{ display:flex; gap:12px; margin-bottom:18px; }
+  .studs i{ width:20px; height:20px; border-radius:50%; border:2px solid var(--line); display:block; }
+  .studs i:nth-child(1){ background:var(--red); }
+  .studs i:nth-child(2){ background:var(--blue); }
+  .studs i:nth-child(3){ background:var(--paper); }
+  .studs i:nth-child(4){ background:var(--green); }
+  .kick{ font-family:var(--disp); font-weight:700; text-transform:uppercase; letter-spacing:.14em; font-size:.82rem; color:var(--ink); margin:0 0 8px; }
+  h1{
+    font-family:var(--disp); font-stretch:88%; font-weight:700;
+    font-size:clamp(2.4rem,6vw,4.4rem); line-height:.97; letter-spacing:-.005em;
+    margin:0 0 14px; text-transform:uppercase;
+  }
+  .lede{ font-size:1.12rem; max-width:70ch; margin:0; color:#2a2622; }
+
+  /* ---------- STATS ---------- */
+  .stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:26px; }
+  @media (max-width:640px){ .stats{ grid-template-columns:repeat(2,1fr); } }
+  .stat{ background:var(--paper); border:2px solid var(--line); padding:14px 16px; }
+  .stat:nth-child(1){ box-shadow:5px 5px 0 var(--red); }
+  .stat:nth-child(2){ box-shadow:5px 5px 0 var(--blue); }
+  .stat:nth-child(3){ box-shadow:5px 5px 0 var(--green); }
+  .stat:nth-child(4){ box-shadow:5px 5px 0 var(--yellow); }
+  .stat .k{ font-size:.72rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ink2); font-weight:600; }
+  .stat .v{ font-family:var(--disp); font-weight:700; font-size:1.55rem; margin-top:3px; font-variant-numeric:tabular-nums; }
+
+  /* ---------- SECTIONS ---------- */
+  section{ margin-top:50px; }
+  .sh{ display:flex; align-items:center; gap:16px; margin-bottom:6px; }
+  .brick{
+    position:relative; flex:none; width:48px; height:38px;
+    border:2px solid var(--line); border-radius:3px;
+    color:#fff; font-family:var(--disp); font-weight:700; font-size:1.3rem;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .brick::before,.brick::after{
+    content:""; position:absolute; top:-7px; width:13px; height:7px;
+    border:2px solid var(--line); border-bottom:none; border-radius:4px 4px 0 0; background:inherit;
+  }
+  .brick::before{ left:7px; } .brick::after{ right:7px; }
+  .b-red{ background:var(--red); } .b-blue{ background:var(--blue); }
+  .b-green{ background:var(--green); } .b-yellow{ background:var(--yellow); color:var(--ink); }
+  .b-ink{ background:var(--ink); }
+  h2{
+    font-family:var(--disp); font-stretch:92%; font-weight:700;
+    font-size:1.85rem; line-height:1.04; margin:0; text-transform:uppercase; letter-spacing:-.005em;
+  }
+  .sub{ color:var(--ink2); margin:3px 0 20px; max-width:80ch; }
+  h3{ font-family:var(--disp); font-weight:700; font-size:1.15rem; margin:28px 0 8px; text-transform:uppercase; letter-spacing:.01em; }
+
+  p{ max-width:88ch; }
+  a{ color:var(--blue); font-weight:600; text-underline-offset:2px; }
+  strong{ font-weight:700; }
+  em{ font-style:normal; background:var(--yellow-s); padding:0 3px; }
+
+  ul.list{ list-style:none; padding:0; margin:14px 0; }
+  ul.list li{ position:relative; padding:6px 0 6px 30px; max-width:88ch; }
+  ul.list li::before{
+    content:""; position:absolute; left:2px; top:12px; width:14px; height:14px;
+    border:2px solid var(--line); border-radius:50%; background:var(--red);
+  }
+  ul.list li:nth-child(4n+2)::before{ background:var(--blue); }
+  ul.list li:nth-child(4n+3)::before{ background:var(--green); }
+  ul.list li:nth-child(4n+4)::before{ background:var(--yellow); }
+
+  /* ---------- CALLOUT ---------- */
+  .call{ border:2px solid var(--line); margin:24px 0; background:var(--paper); box-shadow:6px 6px 0 var(--ink); }
+  .call .cap{ font-family:var(--disp); font-weight:700; text-transform:uppercase; letter-spacing:.09em; font-size:.82rem; padding:8px 16px; color:#fff; background:var(--ink); }
+  .call .body{ padding:14px 18px; }
+  .call .body p{ margin:0; max-width:88ch; }
+  .call.warn .cap{ background:var(--red); }
+  .call.warn{ box-shadow:6px 6px 0 var(--red); }
+  .call.good .cap{ background:var(--green); }
+  .call.good{ box-shadow:6px 6px 0 var(--green); }
+
+  /* ---------- CARDS ---------- */
+  .cards{ display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin:18px 0; }
+  @media (max-width:640px){ .cards{ grid-template-columns:1fr; } }
+  .card{ background:var(--paper); border:2px solid var(--line); padding:18px; box-shadow:6px 6px 0 var(--blue); }
+  .card.feat{ box-shadow:6px 6px 0 var(--red); }
+  .card .tag{ display:inline-block; font-family:var(--disp); font-weight:700; text-transform:uppercase; letter-spacing:.05em; font-size:.72rem; padding:3px 9px; border:2px solid var(--line); background:var(--yellow); margin-bottom:10px; }
+  .card.feat .tag{ background:var(--red); color:#fff; }
+  .card .price{ font-family:var(--disp); font-weight:700; font-size:1.8rem; font-variant-numeric:tabular-nums; }
+  .card .note{ font-size:.93rem; color:var(--ink2); margin-top:2px; }
+  .card ul.list li{ font-size:.94rem; padding:3px 0 3px 26px; }
+  .card ul.list li::before{ top:9px; width:12px; height:12px; }
+
+  /* ---------- TABLES ---------- */
+  .tw{ overflow-x:auto; margin:16px 0; border:2px solid var(--line); box-shadow:7px 7px 0 var(--ink); background:var(--paper); }
+  table{ width:100%; border-collapse:collapse; font-size:.94rem; min-width:560px; }
+  thead th{ font-family:var(--disp); text-align:left; text-transform:uppercase; letter-spacing:.05em; font-size:.78rem; color:#fff; background:var(--ink); padding:12px 15px; font-weight:700; }
+  th.num,td.num{ text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td{ padding:12px 15px; border-top:1.5px solid var(--soft); vertical-align:top; }
+  tbody tr:hover{ background:var(--yellow-s); }
+  td.shop{ font-weight:600; }
+  td.price b{ font-family:var(--disp); font-size:1.04rem; }
+  .st{ display:inline-block; font-size:.74rem; font-weight:700; padding:2px 9px; border:1.5px solid var(--line); white-space:nowrap; }
+  .st.in{ background:var(--green-s); }
+  .st.no{ background:var(--soft); color:#444; }
+  .st.ord{ background:var(--yellow-s); }
+  .st.q{ background:var(--blue-s); }
+  tr.best td{ background:var(--green-s); }
+  tr.best:hover td{ background:var(--green-s); }
+  .flag{ display:inline-block; font-family:var(--disp); font-weight:700; font-size:.64rem; text-transform:uppercase; letter-spacing:.05em; padding:1px 6px; margin-left:6px; border:1.5px solid var(--line); vertical-align:middle; }
+  .flag.off{ background:var(--blue); color:#fff; }
+  .flag.low{ background:var(--red); color:#fff; }
+  td.date{ color:var(--ink2); font-size:.85rem; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .cap-note{ font-size:.85rem; color:var(--ink2); margin:8px 2px 0; max-width:88ch; }
+  .muted{ color:var(--ink2); }
+
+  /* ---------- STEPS ---------- */
+  ol.steps{ list-style:none; counter-reset:s; padding:0; margin:20px 0 0; }
+  ol.steps>li{ counter-increment:s; position:relative; padding:0 0 26px 66px; }
+  ol.steps>li:not(:last-child)::after{ content:""; position:absolute; left:22px; top:42px; bottom:6px; width:2px; background:var(--soft); }
+  ol.steps>li::before{
+    content:counter(s); position:absolute; left:0; top:-2px; width:44px; height:44px;
+    border:2px solid var(--line); border-radius:50%; background:var(--yellow);
+    font-family:var(--disp); font-weight:700; font-size:1.3rem;
+    display:flex; align-items:center; justify-content:center; box-shadow:3px 3px 0 var(--ink);
+  }
+  ol.steps>li:nth-child(2)::before{ background:var(--red); color:#fff; }
+  ol.steps>li:nth-child(3)::before{ background:var(--blue); color:#fff; }
+  ol.steps>li:nth-child(4)::before{ background:var(--green); color:#fff; }
+  ol.steps h3{ margin:2px 0 3px; }
+  ol.steps p{ margin:0; color:var(--ink2); font-size:.96rem; }
+
+  hr{ border:none; border-top:2px solid var(--line); margin:48px 0 22px; }
+  .foot{ color:var(--ink2); font-size:.84rem; }
+  .foot a{ color:var(--ink2); }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <div class="hero">
+    <div class="studs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <p class="kick">Стартов план · ИКСС ООД</p>
+    <h1>Лего роботика<br>за деца</h1>
+    <p class="lede">От „преподавател на час за друг" към собствен клуб: Даниела и екип водят занимания по детски градини, а ИКСС ООД държи целия марж. Ето оборудването, откъде да го купите, числата и стъпките.</p>
+    <div class="stats">
+      <div class="stat"><div class="k">Стартов бюджет</div><div class="v">~€2 000</div></div>
+      <div class="stat"><div class="k">Изплащане</div><div class="v">~12 сесии</div></div>
+      <div class="stat"><div class="k">Модел</div><div class="v">Детски градини</div></div>
+      <div class="stat"><div class="k">Екип</div><div class="v">2 преподавателки</div></div>
+    </div>
+  </div>
+
+  <!-- 1 -->
+  <section>
+    <div class="sh"><span class="brick b-red">1</span><h2>Препоръка накратко</h2></div>
+    <p class="sub">Ако запомниш само едно нещо от целия документ, това е то.</p>
+    <ul class="list">
+      <li><strong>Купи SPIKE Essential сега.</strong> По-богат хардуер (2 моторчета + хъб), Даниела вече го владее, работи спокойно до 2031 г. Продажбите вече спряха, наличността е крайна, така че поръчката трябва да е скоро.</li>
+      <li><strong>Един мобилен комплект в началото</strong> (5 бр. за 10 деца). Двете преподавателки го делят, като водят в <em>различни дни и часове</em>, кутията пътува между градините.</li>
+      <li><strong>Втори комплект от печалбата.</strong> Купуваш го след 1 до 2 месеца, когато искаш две едновременни групи. Изплаща се сам.</li>
+      <li><strong>Таблети:</strong> в началото ползвай ваши налични, или бюджетни Android (~€110). Не бързай с 5 нови наведнъж.</li>
+    </ul>
+  </section>
+
+  <!-- 2 -->
+  <section>
+    <div class="sh"><span class="brick b-blue">2</span><h2>Оборудване</h2></div>
+    <p class="sub">Стандартният комплект на Даниела: 5× SPIKE Essential (по 2 деца) плюс таблети за 10 деца.</p>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>Артикул</th><th>Съдържание и забележка</th><th class="num">Цена/бр</th></tr></thead>
+        <tbody>
+          <tr><td class="shop">LEGO Education SPIKE Essential (45345)</td><td>Хъб + 2 моторчета + цветен сензор, ~449 части</td><td class="num price"><b>~789 лв</b><br><span class="muted">€403</span></td></tr>
+          <tr><td class="shop">Таблет 10″ Android</td><td>4GB+ RAM, Bluetooth (напр. Galaxy Tab A9)</td><td class="num price"><b>~215 лв</b><br><span class="muted">€110 до 160</span></td></tr>
+          <tr><td class="shop muted">Зарядна станция LEGO</td><td class="muted">Пропусни в началото, хъбът се зарежда по USB</td><td class="num muted">€125</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Три конфигурации спрямо бюджета</h3>
+    <div class="cards">
+      <div class="card feat">
+        <span class="tag">Вариант А · препоръчан</span>
+        <div class="price">€2 016</div>
+        <div class="note">5× SPIKE за 10 деца + ваши налични таблети/телефони първите седмици</div>
+        <ul class="list"><li>Пълна група веднага</li><li>Таблети добавяш от първия приход</li></ul>
+      </div>
+      <div class="card">
+        <span class="tag">Вариант Б · минимален</span>
+        <div class="price">~€2 050</div>
+        <div class="note">4× SPIKE (8 деца) + 4× таблет по €110</div>
+        <ul class="list"><li>Пълно оборудване, по-малка група</li><li>5-ти комплект после</li></ul>
+      </div>
+    </div>
+    <p class="muted" style="font-size:.94rem">Вариант В, пълен за 10 деца с 5 нови таблета, е ≈ <strong>€2 566</strong> (леко над бюджета, покрива се от първия месец приход). Смесване нов + втора употреба е ок: 2 до 3 нови + 2 до 3 употребявани и влизаш в €2 000.</p>
+
+    <div class="call warn">
+      <div class="cap">Защо не новата линия CS &amp; AI</div>
+      <div class="body"><p>LEGO замести SPIKE с <strong>Computer Science &amp; AI</strong> (5+/8+/11+). Но 5+ комплектът има само <strong>1 моторче и 0 хъба</strong> (връзка през „карти"), проектиран е за <strong>4 деца</strong> и е по-скоро кодиране и AI, отколкото роботика. За хендс-он усещането SPIKE е по-добър. Мигрирайте след 3 до 4 г., когато е нужно.</p></div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section>
+    <div class="sh"><span class="brick b-yellow">3</span><h2>Откъде да купим</h2></div>
+    <p class="sub">Магазини, които предлагат SPIKE Essential (45345). Продуктът е спрян (EOL), наличността се изчерпва, звънни преди поръчка.</p>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>Магазин</th><th class="num">Цена</th><th>Наличност</th><th>Забележка</th><th class="num">Проверено</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="shop"><a href="https://creativekids.cct.bg/produkt/lego-education-spike-essential/">creativekids.cct.bg</a><span class="flag off">Дистрибутор</span></td>
+            <td class="num price"><b>788,59 лв</b><br><span class="muted">€403,20</span></td>
+            <td><span class="st in">В наличност</span></td>
+            <td>Официалният вносител CCT. Питай за отстъпка за количество и EOL-разпродажба.</td>
+            <td class="date">16.07.26</td>
+          </tr>
+          <tr class="best">
+            <td class="shop"><a href="http://www.mostbg1.com/most/Item.aspx?itemid=68435">mostbg1.com</a><span class="flag low">Най-ниска</span></td>
+            <td class="num price"><b>617,06 лв</b><br><span class="muted">~€315</span></td>
+            <td><span class="st q">Провери</span></td>
+            <td>SET 45345. Най-ниска обявена, вероятно <strong>без ДДС / B2B</strong>. Потвърди цена с ДДС и наличност.</td>
+            <td class="date">16.07.26</td>
+          </tr>
+          <tr>
+            <td class="shop"><a href="https://innovateconsult.net/product/lego-education-spike-essential/">innovateconsult.net</a></td>
+            <td class="num price"><b>~789 лв</b><br><span class="muted">€403,50</span></td>
+            <td><span class="st ord">По заявка</span></td>
+            <td>449 части описани коректно. 12 мес. гаранция.</td>
+            <td class="date">16.07.26</td>
+          </tr>
+          <tr>
+            <td class="shop"><a href="https://www.technokrati.bg/product-page/lego-education-spike-essential">technokrati.bg</a></td>
+            <td class="num price"><b>~792 лв</b><br><span class="muted">€404,90</span></td>
+            <td><span class="st no">Изчерпан</span></td>
+            <td>Доставка след поръчка до 10 работни дни.</td>
+            <td class="date">16.07.26</td>
+          </tr>
+          <tr>
+            <td class="shop"><a href="https://vizualnatehnika.bg/product/45345-lego-education-spike-essential-komplekt-6-godini">vizualnatehnika.bg</a></td>
+            <td class="num price"><b>813,47 лв</b><br><span class="muted">€415,92</span></td>
+            <td><span class="st in">В наличност</span></td>
+            <td>Безплатна доставка, 24 мес. гаранция, тел. консултация.</td>
+            <td class="date">16.07.26</td>
+          </tr>
+          <tr>
+            <td class="shop"><a href="https://officetrend.bg/product/14091/komplekt-lego-education-spike-essential-set.html">officetrend.bg</a></td>
+            <td class="num price"><b>887,99 лв</b><br><span class="muted">€454,02</span></td>
+            <td><span class="st in">В наличност</span></td>
+            <td>739,99 лв без ДДС (за фирми с ДДС номер).</td>
+            <td class="date">16.07.26</td>
+          </tr>
+          <tr>
+            <td class="shop"><a href="https://www.emag.bg/komplekt-konstruktor-lego-education-spike-essential-klolegleg2032/pd/DF2JBFMBM/">emag.bg</a></td>
+            <td class="num price"><b>916,40 лв</b><br><span class="muted">€468,55</span></td>
+            <td><span class="st in">В наличност</span></td>
+            <td>Продавач OVOLT + още 7 оферти. Вноски. Най-скъп.</td>
+            <td class="date">16.07.26</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="cap-note">Проверих и ozone.bg, office1.bg, vario.bg, simonovi-bgshop: <strong>нямат</strong> SPIKE Essential. Пазарът в БГ за този спрян продукт е тънък, горните 7 са реалните източници.</p>
+
+    <h3>ЕС и втора употреба</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Източник</th><th class="num">Цена</th><th>Тип</th><th>Забележка</th><th class="num">Проверено</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="shop"><a href="https://roboshop.lv/products/lego-education-spike-essential-komplekts-45345/">roboshop.lv</a> <span class="muted">(Латвия)</span></td>
+            <td class="num price"><b>€395,00</b></td>
+            <td><span class="st q">Провери</span></td>
+            <td>Специалист LEGO Education. Питай за доставка до БГ.</td>
+            <td class="date">16.07.26</td>
+          </tr>
+          <tr>
+            <td class="shop"><a href="https://kaup24.ee/">kaup24.ee</a> <span class="muted">(Естония)</span></td>
+            <td class="num price"><span class="muted">провери</span></td>
+            <td><span class="st q">Провери</span></td>
+            <td>Листва 45345. Балтийски маркетплейс, доставя в ЕС.</td>
+            <td class="date muted">n/a</td>
+          </tr>
+          <tr class="best">
+            <td class="shop"><a href="https://www.kleinanzeigen.de/s-lego-education-spike-essential/k0">kleinanzeigen.de</a> <span class="muted">(Германия)</span></td>
+            <td class="num price"><b>€200 до 320</b></td>
+            <td><span class="st in">Втора употр.</span></td>
+            <td>Най-дълбокият пазар за употребявано LEGO Education. Провери хъба!</td>
+            <td class="date muted">оценка</td>
+          </tr>
+          <tr>
+            <td class="shop"><a href="https://www.ebay.de/sch/i.html?_nkw=lego+education+spike+essential+45345">eBay.de</a></td>
+            <td class="num price"><b>€200 до 330</b></td>
+            <td><span class="st in">Нов/употр.</span></td>
+            <td>Доставка до БГ или през препращач (~€15 до 25).</td>
+            <td class="date muted">оценка</td>
+          </tr>
+          <tr>
+            <td class="shop">OLX.bg / bazar.bg</td>
+            <td class="num price"><span class="muted">0 обяви</span></td>
+            <td><span class="st no">Празно</span></td>
+            <td>В момента няма. Пусни <strong>запазено търсене с известие</strong>.</td>
+            <td class="date">16.07.26</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="call good">
+      <div class="cap">3 съвета при покупка</div>
+      <div class="body">
+        <ul class="list" style="margin:2px 0">
+          <li><strong>Стойността е в хъба.</strong> Липсващи тухлички са евтини (LEGO Pick-a-Brick / BrickLink), но мъртъв хъб убива комплекта. При втора употреба провери: хъбът пали, зарежда, свързва по Bluetooth; двете моторчета и цветният сензор работят.</li>
+          <li><strong>Звънни на CCT</strong> за отстъпка при 5 бр. и за EOL-разпродажба, спрян продукт често пада с 15 до 30%.</li>
+          <li><strong>Ако ИКСС е по ДДС</strong>, B2B покупка от ЕС дистрибутор с ДДС номер (reverse charge) спестява чуждото ДДС легално.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section>
+    <div class="sh"><span class="brick b-green">4</span><h2>Финансов модел</h2></div>
+    <p class="sub">Една група от 10 деца, Пловдив. Потвърдено: <strong>€20/дете на сесия</strong>, градината без дял, преподавател €20/сесия.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Пер сесия · група 10 деца</th><th class="num">Сума</th></tr></thead>
+        <tbody>
+          <tr><td>Приход (10 × €20)</td><td class="num">€200</td></tr>
+          <tr><td>Преподавател (приятелката)</td><td class="num">−€20</td></tr>
+          <tr><td>Дял за градината</td><td class="num">€0 <span class="muted">(засега)</span></td></tr>
+          <tr><td>Консумативи и транспорт</td><td class="num">−€10</td></tr>
+          <tr><td class="shop">Нето на сесия</td><td class="num price"><b style="color:var(--green)">≈ €170</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="list">
+      <li><strong>Изплащане:</strong> €2 016 ÷ €170 ≈ <strong>12 сесии</strong>. При 4 групи седмично за ~3 седмици; при 1 група за ~3 месеца.</li>
+      <li><strong>Пълен ход</strong> (2 преподавателки × 2 групи = 4 групи/седмица, ~16 сесии/месец): ≈ <strong>€2 720 нето/месец</strong> преди фирмени разходи и данъци.</li>
+      <li><strong>Когато Даниела води сама</strong> (тя е съдружник), нейните €20 остават в семейството, нетото е <strong>€190/сесия</strong>.</li>
+    </ul>
+  </section>
+
+  <!-- 5 -->
+  <section>
+    <div class="sh"><span class="brick b-red">5</span><h2>Локация, екип, правни неща</h2></div>
+    <p class="sub">Моделът „по детски градини" е най-нискорисков: градината дава помещение и деца, вие носите кутиите и знанието.</p>
+    <h3>Локация и пари</h3>
+    <ul class="list">
+      <li>Договор с всяка градина за извънкласна дейност. Фиксирайте кой събира таксите (най-чисто: родителите плащат на ИКСС ООД).</li>
+      <li>Без месечен наем, плащате дял или такса само когато има занятие.</li>
+      <li>Застраховка „злополука" за децата по време на занятието е евтина и успокоява родителите.</li>
+    </ul>
+    <h3>ИКСС ООД, за проверка със счетоводител</h3>
+    <ul class="list">
+      <li>Предмет на дейност / НКИД да включва образование и извънучилищни дейности (напр. 85.51 / 85.59).</li>
+      <li>Преподаватели, работещи с деца, обикновено трябват <strong>свидетелство за съдимост</strong> и понякога медицинско.</li>
+      <li>Приятелката на <strong>граждански договор</strong> (на сесия) в началото; Даниела взима като съдружник.</li>
+      <li>Ако покупката на комплектите мине през градината (за ДДС), уточни писмено <strong>кой остава собственик</strong> на оборудването.</li>
+    </ul>
+  </section>
+
+  <!-- 6 -->
+  <section>
+    <div class="sh"><span class="brick b-blue">6</span><h2>Маркетинг и набиране</h2></div>
+    <p class="sub">Имате готови деца, така че в началото маркетингът е лек. Каналът е B2B2C: печелите градината, тя ви дава родителите.</p>
+    <ul class="list">
+      <li><strong>Пробен урок безплатно</strong> е най-силният инструмент. Директорът вижда ефекта, родителите се записват на място.</li>
+      <li><strong>Пакет за директори:</strong> кратка програма, автобиография на Даниела, снимки, цена. Едностраничен.</li>
+      <li><strong>Име + Facebook/Instagram страница + прост формуляр за записване.</strong> Ти вече имаш опит със соцмрежи за Пловдив, използвай го.</li>
+      <li><strong>Препоръки:</strong> доволен родител води още двама. Малък бонус за препоръка работи отлично при детски занимания.</li>
+    </ul>
+  </section>
+
+  <!-- 7 -->
+  <section>
+    <div class="sh"><span class="brick b-green">7</span><h2>План за старт</h2></div>
+    <p class="sub">Реалистичен график за ~4 седмици до първите платени групи.</p>
+    <ol class="steps">
+      <li><h3>Седмица 1, основи</h3><p>Изберете име. Проверете и добавете НКИД кодовете на ИКСС ООД. Поръчайте оборудването (Вариант А). Свържете се с 2 до 3 градини.</p></li>
+      <li><h3>Седмица 2, документи</h3><p>Договори с градините, застраховка, свидетелства за съдимост, граждански договор с приятелката. Пакет за директори.</p></li>
+      <li><h3>Седмица 3, пробни уроци</h3><p>Безплатни демонстрации. Записване, събиране на таксите за първия месец, фиксиране на графика.</p></li>
+      <li><h3>Седмица 4, първи платени групи</h3><p>Стартирате. Следите нетото. При запълнен график, втори комплект от печалбата.</p></li>
+    </ol>
+  </section>
+
+  <!-- 8 -->
+  <section>
+    <div class="sh"><span class="brick b-ink">8</span><h2>Следващи стъпки</h2></div>
+    <p class="sub">Потвърдено: €20/дете на сесия, Пловдив, градината без дял, вземате сегашните 10 деца. Остава:</p>
+    <ul class="list">
+      <li><strong>Чист изход:</strong> провери дали Даниела няма уговорка или ограничение с настоящия организатор, преди да прехвърлите децата.</li>
+      <li><strong>Име и бранд</strong> на клуба + Facebook/Instagram страница и формуляр за записване.</li>
+      <li><strong>Първите 2 до 3 градини</strong> в Пловдив, с които да стартирате графика.</li>
+      <li><strong>Поръчка на оборудването</strong>, докато има наличност от SPIKE.</li>
+    </ul>
+  </section>
+
+  <hr>
+  <p class="foot">
+    Цените са проверени на 16 юли 2026 и служат за планиране, не са оферта, потвърдете при магазина. Данъчните и трудово-правните въпроси потвърдете със счетоводител.<br>
+    Източници: <a href="https://education.lego.com/en-us/spike-update-2026/">LEGO, SPIKE Retirement</a> · <a href="https://creativekids.cct.bg/shop/">Creative Kids</a> · магазините в таблицата по-горе.
+  </p>
+
+</div>
+</body>
+</html>
