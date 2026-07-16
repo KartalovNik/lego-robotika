@@ -65,7 +65,7 @@
   /* ---------- STATS ---------- */
   .stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:26px; }
   @media (max-width:640px){ .stats{ grid-template-columns:repeat(2,1fr); } }
-  .stat{ background:var(--paper); border:2px solid var(--line); padding:14px 16px; }
+  .stat{ background:var(--paper); border:2px solid var(--line); padding:14px 16px; min-width:0; }
   .stat:nth-child(1){ box-shadow:5px 5px 0 var(--red); }
   .stat:nth-child(2){ box-shadow:5px 5px 0 var(--blue); }
   .stat:nth-child(3){ box-shadow:5px 5px 0 var(--green); }
@@ -176,6 +176,41 @@
   hr{ border:none; border-top:2px solid var(--line); margin:48px 0 22px; }
   .foot{ color:var(--ink2); font-size:.84rem; }
   .foot a{ color:var(--ink2); }
+
+  /* ---------- MOBILE ---------- */
+  @media (max-width:600px){
+    .sheet{ overflow-x:clip; padding:16px; }
+    .hero{ box-shadow:6px 6px 0 var(--red); }
+    h1{ font-size:2.15rem; }
+    h2{ font-size:1.4rem; }
+    .brick{ width:40px; height:32px; font-size:1.08rem; }
+    .sh{ gap:12px; }
+    .stat .v{ font-size:1.16rem; overflow-wrap:break-word; }
+    .btn{ width:100%; justify-content:space-between; font-size:.95rem; padding:13px 16px; }
+
+    /* wide tables become stacked cards */
+    .tw:not(.kv){ overflow:visible; box-shadow:5px 5px 0 var(--ink); }
+    .tw:not(.kv) table{ min-width:0; }
+    .tw:not(.kv) thead{ display:none; }
+    .tw:not(.kv) tr{ display:block; padding:13px 16px 15px; border-top:2px solid var(--line); }
+    .tw:not(.kv) tbody tr:first-child{ border-top:none; }
+    .tw:not(.kv) tbody tr:hover{ background:transparent; }
+    .tw:not(.kv) td{ display:block; border:none; padding:4px 0; text-align:left; }
+    .tw:not(.kv) td.num{ text-align:left; white-space:normal; }
+    .tw:not(.kv) td:empty{ display:none; }
+    .tw:not(.kv) td::before{ content:attr(data-label); display:block; font-family:var(--disp); font-weight:700; text-transform:uppercase; font-size:.66rem; letter-spacing:.05em; color:var(--ink2); margin-bottom:1px; }
+    .tw:not(.kv) td:first-child{ font-family:var(--disp); font-weight:700; font-size:1.12rem; margin-bottom:6px; }
+    .tw:not(.kv) td:first-child::before{ display:none; }
+    .tw:not(.kv) td.price br{ display:none; }
+    .tw:not(.kv) td.price .muted{ margin-left:8px; }
+
+    /* key-value table (financial) stays 2 columns */
+    .tw.kv{ box-shadow:5px 5px 0 var(--ink); }
+    .tw.kv table{ min-width:0; }
+    .tw.kv thead{ display:none; }
+    .tw.kv td{ padding:11px 14px; }
+    .tw.kv td.num{ font-weight:700; }
+  }
 </style>
 </head>
 <body>
@@ -192,7 +227,7 @@
       <div class="stat"><div class="k">Стартов бюджет</div><div class="v">~€2 000</div></div>
       <div class="stat"><div class="k">Изплащане</div><div class="v">~12 сесии</div></div>
       <div class="stat"><div class="k">Модел</div><div class="v">Детски градини</div></div>
-      <div class="stat"><div class="k">Екип</div><div class="v">2 преподавателки</div></div>
+      <div class="stat"><div class="k">Екип</div><div class="v">2 водещи</div></div>
     </div>
   </div>
 
@@ -217,9 +252,9 @@
       <table>
         <thead><tr><th>Артикул</th><th>Съдържание и забележка</th><th class="num">Цена/бр</th></tr></thead>
         <tbody>
-          <tr><td class="shop">LEGO Education SPIKE Essential (45345)</td><td>Хъб + 2 моторчета + цветен сензор, ~449 части</td><td class="num price"><b>~789 лв</b><br><span class="muted">€403</span></td></tr>
-          <tr><td class="shop">Таблет 10″ Android</td><td>4GB+ RAM, Bluetooth (напр. Galaxy Tab A9)</td><td class="num price"><b>~215 лв</b><br><span class="muted">€110 до 160</span></td></tr>
-          <tr><td class="shop muted">Зарядна станция LEGO</td><td class="muted">Пропусни в началото, хъбът се зарежда по USB</td><td class="num muted">€125</td></tr>
+          <tr><td class="shop" data-label="Артикул">LEGO Education SPIKE Essential (45345)</td><td data-label="Съдържание и забележка">Хъб + 2 моторчета + цветен сензор, ~449 части</td><td class="num price" data-label="Цена/бр"><b>~789 лв</b><br><span class="muted">€403</span></td></tr>
+          <tr><td class="shop" data-label="Артикул">Таблет 10″ Android</td><td data-label="Съдържание и забележка">4GB+ RAM, Bluetooth (напр. Galaxy Tab A9)</td><td class="num price" data-label="Цена/бр"><b>~215 лв</b><br><span class="muted">€110 до 160</span></td></tr>
+          <tr><td class="shop muted" data-label="Артикул">Зарядна станция LEGO</td><td class="muted" data-label="Съдържание и забележка">Пропусни в началото, хъбът се зарежда по USB</td><td class="num muted" data-label="Цена/бр">€125</td></tr>
         </tbody>
       </table>
     </div>
@@ -257,53 +292,53 @@
         <thead><tr><th>Магазин</th><th class="num">Цена</th><th>Наличност</th><th>Забележка</th><th class="num">Проверено</th></tr></thead>
         <tbody>
           <tr>
-            <td class="shop"><a href="https://creativekids.cct.bg/produkt/lego-education-spike-essential/">creativekids.cct.bg</a><span class="flag off">Дистрибутор</span></td>
-            <td class="num price"><b>788,59 лв</b><br><span class="muted">€403,20</span></td>
-            <td><span class="st in">В наличност</span></td>
-            <td>Официалният вносител CCT. Питай за отстъпка за количество и EOL-разпродажба.</td>
-            <td class="date">16.07.26</td>
+            <td class="shop" data-label="Магазин"><a href="https://creativekids.cct.bg/produkt/lego-education-spike-essential/">creativekids.cct.bg</a><span class="flag off">Дистрибутор</span></td>
+            <td class="num price" data-label="Цена"><b>788,59 лв</b><br><span class="muted">€403,20</span></td>
+            <td data-label="Наличност"><span class="st in">В наличност</span></td>
+            <td data-label="Забележка">Официалният вносител CCT. Питай за отстъпка за количество и EOL-разпродажба.</td>
+            <td class="date" data-label="Проверено">16.07.26</td>
           </tr>
           <tr class="best">
-            <td class="shop"><a href="http://www.mostbg1.com/most/Item.aspx?itemid=68435">mostbg1.com</a><span class="flag low">Най-ниска</span></td>
-            <td class="num price"><b>617,06 лв</b><br><span class="muted">~€315</span></td>
-            <td><span class="st q">Провери</span></td>
-            <td>SET 45345. Най-ниска обявена, вероятно <strong>без ДДС / B2B</strong>. Потвърди цена с ДДС и наличност.</td>
-            <td class="date">16.07.26</td>
+            <td class="shop" data-label="Магазин"><a href="http://www.mostbg1.com/most/Item.aspx?itemid=68435">mostbg1.com</a><span class="flag low">Най-ниска</span></td>
+            <td class="num price" data-label="Цена"><b>617,06 лв</b><br><span class="muted">~€315</span></td>
+            <td data-label="Наличност"><span class="st q">Провери</span></td>
+            <td data-label="Забележка">SET 45345. Най-ниска обявена, вероятно <strong>без ДДС / B2B</strong>. Потвърди цена с ДДС и наличност.</td>
+            <td class="date" data-label="Проверено">16.07.26</td>
           </tr>
           <tr>
-            <td class="shop"><a href="https://innovateconsult.net/product/lego-education-spike-essential/">innovateconsult.net</a></td>
-            <td class="num price"><b>~789 лв</b><br><span class="muted">€403,50</span></td>
-            <td><span class="st ord">По заявка</span></td>
-            <td>449 части описани коректно. 12 мес. гаранция.</td>
-            <td class="date">16.07.26</td>
+            <td class="shop" data-label="Магазин"><a href="https://innovateconsult.net/product/lego-education-spike-essential/">innovateconsult.net</a></td>
+            <td class="num price" data-label="Цена"><b>~789 лв</b><br><span class="muted">€403,50</span></td>
+            <td data-label="Наличност"><span class="st ord">По заявка</span></td>
+            <td data-label="Забележка">449 части описани коректно. 12 мес. гаранция.</td>
+            <td class="date" data-label="Проверено">16.07.26</td>
           </tr>
           <tr>
-            <td class="shop"><a href="https://www.technokrati.bg/product-page/lego-education-spike-essential">technokrati.bg</a></td>
-            <td class="num price"><b>~792 лв</b><br><span class="muted">€404,90</span></td>
-            <td><span class="st no">Изчерпан</span></td>
-            <td>Доставка след поръчка до 10 работни дни.</td>
-            <td class="date">16.07.26</td>
+            <td class="shop" data-label="Магазин"><a href="https://www.technokrati.bg/product-page/lego-education-spike-essential">technokrati.bg</a></td>
+            <td class="num price" data-label="Цена"><b>~792 лв</b><br><span class="muted">€404,90</span></td>
+            <td data-label="Наличност"><span class="st no">Изчерпан</span></td>
+            <td data-label="Забележка">Доставка след поръчка до 10 работни дни.</td>
+            <td class="date" data-label="Проверено">16.07.26</td>
           </tr>
           <tr>
-            <td class="shop"><a href="https://vizualnatehnika.bg/product/45345-lego-education-spike-essential-komplekt-6-godini">vizualnatehnika.bg</a></td>
-            <td class="num price"><b>813,47 лв</b><br><span class="muted">€415,92</span></td>
-            <td><span class="st in">В наличност</span></td>
-            <td>Безплатна доставка, 24 мес. гаранция, тел. консултация.</td>
-            <td class="date">16.07.26</td>
+            <td class="shop" data-label="Магазин"><a href="https://vizualnatehnika.bg/product/45345-lego-education-spike-essential-komplekt-6-godini">vizualnatehnika.bg</a></td>
+            <td class="num price" data-label="Цена"><b>813,47 лв</b><br><span class="muted">€415,92</span></td>
+            <td data-label="Наличност"><span class="st in">В наличност</span></td>
+            <td data-label="Забележка">Безплатна доставка, 24 мес. гаранция, тел. консултация.</td>
+            <td class="date" data-label="Проверено">16.07.26</td>
           </tr>
           <tr>
-            <td class="shop"><a href="https://officetrend.bg/product/14091/komplekt-lego-education-spike-essential-set.html">officetrend.bg</a></td>
-            <td class="num price"><b>887,99 лв</b><br><span class="muted">€454,02</span></td>
-            <td><span class="st in">В наличност</span></td>
-            <td>739,99 лв без ДДС (за фирми с ДДС номер).</td>
-            <td class="date">16.07.26</td>
+            <td class="shop" data-label="Магазин"><a href="https://officetrend.bg/product/14091/komplekt-lego-education-spike-essential-set.html">officetrend.bg</a></td>
+            <td class="num price" data-label="Цена"><b>887,99 лв</b><br><span class="muted">€454,02</span></td>
+            <td data-label="Наличност"><span class="st in">В наличност</span></td>
+            <td data-label="Забележка">739,99 лв без ДДС (за фирми с ДДС номер).</td>
+            <td class="date" data-label="Проверено">16.07.26</td>
           </tr>
           <tr>
-            <td class="shop"><a href="https://www.emag.bg/komplekt-konstruktor-lego-education-spike-essential-klolegleg2032/pd/DF2JBFMBM/">emag.bg</a></td>
-            <td class="num price"><b>916,40 лв</b><br><span class="muted">€468,55</span></td>
-            <td><span class="st in">В наличност</span></td>
-            <td>Продавач OVOLT + още 7 оферти. Вноски. Най-скъп.</td>
-            <td class="date">16.07.26</td>
+            <td class="shop" data-label="Магазин"><a href="https://www.emag.bg/komplekt-konstruktor-lego-education-spike-essential-klolegleg2032/pd/DF2JBFMBM/">emag.bg</a></td>
+            <td class="num price" data-label="Цена"><b>916,40 лв</b><br><span class="muted">€468,55</span></td>
+            <td data-label="Наличност"><span class="st in">В наличност</span></td>
+            <td data-label="Забележка">Продавач OVOLT + още 7 оферти. Вноски. Най-скъп.</td>
+            <td class="date" data-label="Проверено">16.07.26</td>
           </tr>
         </tbody>
       </table>
@@ -316,39 +351,39 @@
         <thead><tr><th>Източник</th><th class="num">Цена</th><th>Тип</th><th>Забележка</th><th class="num">Проверено</th></tr></thead>
         <tbody>
           <tr>
-            <td class="shop"><a href="https://roboshop.lv/products/lego-education-spike-essential-komplekts-45345/">roboshop.lv</a> <span class="muted">(Латвия)</span></td>
-            <td class="num price"><b>€395,00</b></td>
-            <td><span class="st q">Провери</span></td>
-            <td>Специалист LEGO Education. Питай за доставка до БГ.</td>
-            <td class="date">16.07.26</td>
+            <td class="shop" data-label="Източник"><a href="https://roboshop.lv/products/lego-education-spike-essential-komplekts-45345/">roboshop.lv</a> <span class="muted">(Латвия)</span></td>
+            <td class="num price" data-label="Цена"><b>€395,00</b></td>
+            <td data-label="Тип"><span class="st q">Провери</span></td>
+            <td data-label="Забележка">Специалист LEGO Education. Питай за доставка до БГ.</td>
+            <td class="date" data-label="Проверено">16.07.26</td>
           </tr>
           <tr>
-            <td class="shop"><a href="https://kaup24.ee/">kaup24.ee</a> <span class="muted">(Естония)</span></td>
-            <td class="num price"><span class="muted">провери</span></td>
-            <td><span class="st q">Провери</span></td>
-            <td>Листва 45345. Балтийски маркетплейс, доставя в ЕС.</td>
-            <td class="date muted">n/a</td>
+            <td class="shop" data-label="Източник"><a href="https://kaup24.ee/">kaup24.ee</a> <span class="muted">(Естония)</span></td>
+            <td class="num price" data-label="Цена"><span class="muted">провери</span></td>
+            <td data-label="Тип"><span class="st q">Провери</span></td>
+            <td data-label="Забележка">Листва 45345. Балтийски маркетплейс, доставя в ЕС.</td>
+            <td class="date muted" data-label="Проверено">n/a</td>
           </tr>
           <tr class="best">
-            <td class="shop"><a href="https://www.kleinanzeigen.de/s-lego-education-spike-essential/k0">kleinanzeigen.de</a> <span class="muted">(Германия)</span></td>
-            <td class="num price"><b>€200 до 320</b></td>
-            <td><span class="st in">Втора употр.</span></td>
-            <td>Най-дълбокият пазар за употребявано LEGO Education. Провери хъба!</td>
-            <td class="date muted">оценка</td>
+            <td class="shop" data-label="Източник"><a href="https://www.kleinanzeigen.de/s-lego-education-spike-essential/k0">kleinanzeigen.de</a> <span class="muted">(Германия)</span></td>
+            <td class="num price" data-label="Цена"><b>€200 до 320</b></td>
+            <td data-label="Тип"><span class="st in">Втора употр.</span></td>
+            <td data-label="Забележка">Най-дълбокият пазар за употребявано LEGO Education. Провери хъба!</td>
+            <td class="date muted" data-label="Проверено">оценка</td>
           </tr>
           <tr>
-            <td class="shop"><a href="https://www.ebay.de/sch/i.html?_nkw=lego+education+spike+essential+45345">eBay.de</a></td>
-            <td class="num price"><b>€200 до 330</b></td>
-            <td><span class="st in">Нов/употр.</span></td>
-            <td>Доставка до БГ или през препращач (~€15 до 25).</td>
-            <td class="date muted">оценка</td>
+            <td class="shop" data-label="Източник"><a href="https://www.ebay.de/sch/i.html?_nkw=lego+education+spike+essential+45345">eBay.de</a></td>
+            <td class="num price" data-label="Цена"><b>€200 до 330</b></td>
+            <td data-label="Тип"><span class="st in">Нов/употр.</span></td>
+            <td data-label="Забележка">Доставка до БГ или през препращач (~€15 до 25).</td>
+            <td class="date muted" data-label="Проверено">оценка</td>
           </tr>
           <tr>
-            <td class="shop">OLX.bg / bazar.bg</td>
-            <td class="num price"><span class="muted">0 обяви</span></td>
-            <td><span class="st no">Празно</span></td>
-            <td>В момента няма. Пусни <strong>запазено търсене с известие</strong>.</td>
-            <td class="date">16.07.26</td>
+            <td class="shop" data-label="Източник">OLX.bg / bazar.bg</td>
+            <td class="num price" data-label="Цена"><span class="muted">0 обяви</span></td>
+            <td data-label="Тип"><span class="st no">Празно</span></td>
+            <td data-label="Забележка">В момента няма. Пусни <strong>запазено търсене с известие</strong>.</td>
+            <td class="date" data-label="Проверено">16.07.26</td>
           </tr>
         </tbody>
       </table>
@@ -370,15 +405,15 @@
   <section>
     <div class="sh"><span class="brick b-green">4</span><h2>Финансов модел</h2></div>
     <p class="sub">Една група от 10 деца, Пловдив. Потвърдено: <strong>€20/дете на сесия</strong>, градината без дял, преподавател €20/сесия.</p>
-    <div class="tw">
+    <div class="tw kv">
       <table>
         <thead><tr><th>Пер сесия · група 10 деца</th><th class="num">Сума</th></tr></thead>
         <tbody>
-          <tr><td>Приход (10 × €20)</td><td class="num">€200</td></tr>
-          <tr><td>Преподавател (приятелката)</td><td class="num">−€20</td></tr>
-          <tr><td>Дял за градината</td><td class="num">€0 <span class="muted">(засега)</span></td></tr>
-          <tr><td>Консумативи и транспорт</td><td class="num">−€10</td></tr>
-          <tr><td class="shop">Нето на сесия</td><td class="num price"><b style="color:var(--green)">≈ €170</b></td></tr>
+          <tr><td data-label="Пер сесия · група 10 деца">Приход (10 × €20)</td><td class="num" data-label="Сума">€200</td></tr>
+          <tr><td data-label="Пер сесия · група 10 деца">Преподавател (приятелката)</td><td class="num" data-label="Сума">−€20</td></tr>
+          <tr><td data-label="Пер сесия · група 10 деца">Дял за градината</td><td class="num" data-label="Сума">€0 <span class="muted">(засега)</span></td></tr>
+          <tr><td data-label="Пер сесия · група 10 деца">Консумативи и транспорт</td><td class="num" data-label="Сума">−€10</td></tr>
+          <tr><td class="shop" data-label="Пер сесия · група 10 деца">Нето на сесия</td><td class="num price" data-label="Сума"><b style="color:var(--green)">≈ €170</b></td></tr>
         </tbody>
       </table>
     </div>
